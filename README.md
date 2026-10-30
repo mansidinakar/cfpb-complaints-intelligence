@@ -77,13 +77,13 @@ Sources: CFPB complaint form product and issue options, August 2023 and October 
 
 ## Repository structure
 
-cfpb-complaints-intelligence/
-├── data/          # raw and processed data (not committed)
-├── docs/          # recommendation memo and documentation
-├── notebooks/     # Jupyter notebooks (loading, profiling, text analysis)
-├── scripts/       # data preparation scripts
-├── sql/           # analysis queries, numbered in run order
-└── tableau/       # dashboard notes and screenshots
+    cfpb-complaints-intelligence/
+    ├── data/          # raw and processed data (not committed)
+    ├── docs/          # recommendation memo and documentation
+    ├── notebooks/     # Jupyter notebooks (loading, profiling, text analysis)
+    ├── scripts/       # data preparation scripts
+    ├── sql/           # analysis queries, numbered in run order
+    └── tableau/       # dashboard notes and screenshots
 
 SQL files, in run order:
 
@@ -97,21 +97,21 @@ SQL (DuckDB), Python (pandas, scikit-learn, matplotlib, Jupyter), Tableau Public
 
 ## How to reproduce
 
-1. Clone the repo and create a virtual environment:
+**Step 1.** Clone the repo and create a virtual environment:
 
-python3 -m venv venv
-source venv/bin/activate
-pip install duckdb pandas scikit-learn matplotlib jupyter
+    python3 -m venv venv
+    source venv/bin/activate
+    pip install duckdb pandas scikit-learn matplotlib jupyter
 
-2. Download the full complaint CSV ZIP from the [CFPB Consumer Complaint Database](https://www.consumerfinance.gov/data-research/consumer-complaints/) into data/raw/.
+**Step 2.** Download the full complaint CSV ZIP from the [CFPB Consumer Complaint Database](https://www.consumerfinance.gov/data-research/consumer-complaints/) into data/raw/.
 
-3. Filter it to the project scope:
+**Step 3.** Filter it to the project scope:
 
-python scripts/filter_bulk.py
+    python scripts/filter_bulk.py
 
-4. Open notebooks/01_load_and_profile.ipynb and run the cells to load the data into DuckDB and build the complaints, company_groups and complaints_scoped tables.
+**Step 4.** Open notebooks/01_load_and_profile.ipynb and run the cells to load the data into DuckDB and build the complaints, company_groups and complaints_scoped tables.
 
-5. Download the [CFPB Narratives Archive](https://www.consumerfinance.gov/foia-requests/foia-electronic-reading-room/cfpb-consumer-complaint-database-narratives-archive/) exports into data/raw/archive/ (needed from Phase 3).
+**Step 5.** Download the [CFPB Narratives Archive](https://www.consumerfinance.gov/foia-requests/foia-electronic-reading-room/cfpb-consumer-complaint-database-narratives-archive/) exports into data/raw/archive/ (needed from Phase 3).
 
 ## Limitations
 
