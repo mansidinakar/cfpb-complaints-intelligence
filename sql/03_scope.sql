@@ -1,8 +1,24 @@
 -- 03_scope.sql
--- Purpose: flag complaints that are really credit reporting, so analysis can exclude them.
--- Why: credit bureaus are not neobank peers, and credit-report issues filed under
---      in-scope products (mostly Credit card) are a bureau problem, not a product problem.
--- Output: complaints_flagged (all rows plus two flags), complaints_scoped (rows kept)
+-- Purpose: flag complaints to leave out of trend analysis and build the scoped table
+-- Flags: is_bureau (credit bureaus), is_credit_report_issue, is_surge_event
+-- is_surge_event covers two January 2025 anomalies:
+--   1. Block and Early Warning Services (Zelle), Jan 13 to Aug 31 2025, a complaint campaign
+--      driven by social media influencers as reported by Consumer Reports
+--   2. Any other company whose Jan 13 to Jan 31 2025 volume was over 500 and over 3x its
+--      December 2024 volume, which catches the Capital One vendor outage
+-- Flagged rows are kept in the table, not deleted
+
+DROP VIEW IF EXISTS outcomes;
+DROP VIEW IF EXISTS analysis;
+
+CREATE OR REPLACE TABLE spike_companies AS
+SELECT company
+FROM complaints
+WHERE date_received BETWEEN DATE '2024-12-01' AND DATE '2025-01-31'
+GROUP BY company
+HAVING COUNT(*) FILTER (WHERE date_received BETWEEN DATE '2025-01-13' AND DATE '2025-01-31') > 500
+   AND COUNT(*) FILTER (WHERE date_received BETWEEN DATE '2025-01-13' AND DATE '2025-01-31')
+     > 3 * COUNT(*) FILTER (WHERE date_received BETWEEN DATE '2024-12-01' AND DATE '2024-12-31');
 
 CREATE OR REPLACE TABLE complaints_flagged AS
 SELECT *,
@@ -14,25 +30,14 @@ SELECT *,
    OR issue ILIKE '%identity theft%' OR issue ILIKE '%monitoring%') AS is_credit_report_issue
 FROM complaints;
 
--- Surge flag: Jan 15-20, 2025 spike (approximate; includes some normal-day volume)
 CREATE OR REPLACE TABLE complaints_scoped AS
 SELECT * EXCLUDE (is_bureau, is_credit_report_issue),
-  (date_received BETWEEN DATE '2025-01-15' AND DATE '2025-01-20'
-   AND company IN ('Block, Inc.', 'Early Warning Services, LLC',
-                   'NAVY FEDERAL CREDIT UNION', 'CAPITAL ONE FINANCIAL CORPORATION')
-   AND issue IN ('Other transaction problem',
-                 'Problem caused by your funds being low',
-                 'Managing an account')) AS is_surge_event
+  (
+    (company IN ('Block, Inc.', 'Early Warning Services, LLC')
+       AND date_received BETWEEN DATE '2025-01-13' AND DATE '2025-08-31')
+    OR
+    (company IN (SELECT company FROM spike_companies)
+       AND date_received BETWEEN DATE '2025-01-13' AND DATE '2025-01-31')
+  ) AS is_surge_event
 FROM complaints_flagged
 WHERE NOT is_bureau AND NOT is_credit_report_issue;
-
--- Check: surge rows and monthly volume without them
-SELECT COUNT(*) AS rows, COUNT(*) FILTER (WHERE is_surge_event) AS surge_rows
-FROM complaints_scoped;
-
--- Check: how much was excluded
-SELECT COUNT(*) AS total,
-       SUM(is_bureau::INT) AS bureau_rows,
-       SUM(is_credit_report_issue::INT) AS credit_issue_rows,
-       SUM((NOT is_bureau AND NOT is_credit_report_issue)::INT) AS kept
-FROM complaints_flagged;
