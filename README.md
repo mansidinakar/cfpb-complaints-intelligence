@@ -16,16 +16,22 @@ Growth compares Sep 2025 to Jul 2026 with Sep 2023 to Jul 2024, two years apart,
 | All other issues | 78,751 | 41.4% | +48% | +44% | 22.4% |
 
 1. **One failure, four product labels.** Disputes and unauthorized transactions appear under credit card (26,721), checking (21,496), money transfer (5,938) and prepaid (2,020). Outside credit cards the mode has 29,454 complaints, up 122%. Grouping by failure mode shows a problem that product-level rankings split into pieces.
-2. **Chime resolves fewer complaints, and the mix of complaints does not explain it.** Relief rate in Sep 2025 to Jul 2026: Chime 7.6%, banks 25.7%, PayPal 38.5%. At the banks' complaint mix, Chime's rate is 8.6%, so mix explains about 1 of the 18 points.
-3. **Chime's complaints concentrate in disputes and debits.** Disputes and unauthorized transactions are 41.9% of Chime's complaints, against 31.4% for banks and 27.1% for other fintechs. Debits and payments gone wrong are 10.6% vs 6.1% for banks.
-4. **The gap holds in every failure mode.**
+2. **Chime resolves far fewer complaints than banks, and mix explains about a quarter of the gap.** Relief rate, Sep 2025 to Jul 2026: Chime 7.6% (10,524 complaints), banks 25.7%. Re-weighting banks to Chime's product and failure-mode mix gives 20.7%, so mix explains about 5 of the 18 points and a 13-point gap remains.
+3. **Chime's complaints concentrate in disputes.** Within checking, disputes and unauthorized transactions are 45.2% of Chime's complaints and 27.0% of banks'. Debits and payments gone wrong are 15.3% vs 13.4%, and access to funds is 14.8% vs 24.4%.
+4. **The gap holds inside the same product and failure mode.**
 
-| Relief rate | Chime | Banks | PayPal |
+| Relief rate, same product and mode | Chime complaints | Chime | Banks |
 | --- | --- | --- | --- |
-| Disputes and unauthorized transactions | 7.8% | 29.8% | 45.9% |
-| Access to funds and holds | 9.3% | 20.9% | 33.3% |
-| Debits and payments gone wrong | 7.8% | 16.8% | 35.0% |
-| Fraud and scams | 3.3% | 8.9% | 39.9% |
+| Checking: disputes and unauthorized transactions | 3,298 | 7.8% | 23.5% |
+| Checking: access to funds and holds | 1,078 | 9.1% | 21.2% |
+| Checking: debits and payments gone wrong | 1,119 | 7.8% | 16.8% |
+| Checking: all other issues | 1,795 | 10.7% | 24.3% |
+| Credit card: disputes and unauthorized transactions | 581 | 9.5% | 34.5% |
+| Money transfer: fraud and scams | 800 | 3.3% | 8.9% |
+| Money transfer: unclassified | 690 | 1.4% | 13.0% |
+| Money transfer: disputes and unauthorized transactions | 419 | 4.8% | 12.6% |
+
+Prepaid disputes (108 Chime complaints, 10.2% vs 9.4%) show no gap, and the sample is too small to read. PayPal's relief rate (38.5%) is at failure-mode level and is not adjusted for product.
 
 5. **Block and Zelle show near-zero relief both before and after the 2025 complaint campaign.** Block's relief rate was 0.6% before the campaign, 0.0% during it and 0.1% after, and Early Warning Services (Zelle) was 0.0% in all three periods. This is a standing pattern in how those companies' responses are recorded, not a campaign effect, so Block is shown separately in the benchmark and left out of conclusions about peer performance.
 
@@ -97,7 +103,7 @@ Sources: [Consumer Reports](https://www.consumerreports.org/money/scams-fraud/cf
 - **Failure modes** group CFPB issue and sub-issue labels by what went wrong. The grouping is analyst judgment, and the full definition is the CASE statement in 12_failure_modes.sql.
 - **Fixability ratings** (10_fixability.sql) are analyst judgment, not data.
 - **Sensitivity.** Issue-level priority scores were tested across 12 scenarios (six weight sets, with and without Block and Zelle). Only three issues stayed in the top five in at least 10 of the 12, and one of them has no sub-issues to act on, so the final analysis groups by failure mode.
-- **Mix-adjusted benchmark.** Each company's relief rate in each failure mode is weighted by the banks' complaint mix, so differences in what customers complain about drop out.
+- **Mix-adjusted benchmark.** Chime's relief rate is compared with the banks' rate in the same product and failure mode (14_benchmark_product.sql), then banks are re-weighted to Chime's product and mode mix. The mode-only version in 13_benchmark.sql does not adjust for product and is kept for reference.
 
 ## Narratives
 
@@ -141,6 +147,7 @@ SQL files, in run order:
 - **11_sensitivity.sql**: ranking stability across 12 scenarios
 - **12_failure_modes.sql**: issues regrouped by failure mode
 - **13_benchmark.sql**: mix-adjusted company comparison
+- **14_benchmark_product.sql**: Chime vs banks within the same product and failure mode
 
 ## Tools
 
