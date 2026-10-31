@@ -1,10 +1,39 @@
 # CFPB Complaints Intelligence
 
-**Which complaint failures should a fintech or neobank fix first?** Real CFPB complaint data, analyzed with SQL (DuckDB), Python text analysis and a Tableau dashboard, ending in a prioritized product recommendation.
+**Which complaint failures should a fintech or neobank fix first?** Real CFPB complaint data, analyzed with SQL (DuckDB), Python text analysis and a Tableau dashboard, ending in a prioritized recommendation.
 
-## Key findings (Phase 2, structured data)
+## Recommendations
 
-Growth compares Sep 2025 to Jul 2026 with Sep 2023 to Jul 2024, two years apart, so the Jan 2025 anomalies sit in neither window. Overall complaint volume grew 77.9% (68.1% without Block and Zelle).
+The three priorities have different strengths of evidence, and the fixes are analyst judgment tied to the narrative themes that passed validation.
+
+| Priority | Failure mode | Share of complaints | Growth without Block and Zelle | Evidence |
+| --- | --- | --- | --- | --- |
+| 1 | Disputes and unauthorized transactions | 29.6% | +106% | Strong: structured data and four validated narrative themes |
+| 2 | Access to funds and holds | 14.4% | +73% | Moderate: structured data and two validated themes (42.9% of the mode's narratives) |
+| 3 | Debits and payments gone wrong | 5.6% | +99% | Structured data only: no narrative theme passed validation |
+
+Overall complaint volume grew 68.1% over the same period without Block and Zelle (77.9% with them).
+
+**1. Disputes and unauthorized transactions.** Chime's checking disputes close with relief 7.8% of the time against 23.5% at banks, and disputes are 45.2% of Chime's checking complaints against 27.0% at banks.
+- Validated root causes: unauthorized debit card transactions where the claim is denied (11.5% of the mode's narratives) and money taken from a checking account or ATM with no resolution (16.4%), plus merchant refund or non-delivery disputes (11.7%) and charges disputed with a company after payment (17.7%).
+- Fix: one dispute flow for card and account disputes with in-app claim status, a specific written reason for every denial, and a one-step appeal with evidence upload.
+- Measure: dispute relief rate against the 23.5% bank benchmark in checking, share of denied claims appealed and overturned, disputes closed within regulatory timelines, complaints per 10,000 active accounts.
+
+**2. Access to funds and holds.** Chime's checking relief is 9.1% against 21.2% at banks.
+- Validated root causes: check deposit holds (16.6% of the mode's narratives) and closed accounts or funds that are hard to withdraw (26.3%). The lockout and verification theme failed validation (4 of 10), and about half of its misfits were unauthorized activity or account security complaints.
+- Fix: show the hold reason and release date at deposit, release part of the deposit where possible, and on account closure release the remaining balance on a stated schedule with notice.
+- Measure: hold-related contacts per 1,000 deposits, days from closure to funds release, relief rate against the 21.2% bank benchmark.
+
+**3. Debits and payments gone wrong.** Chime's checking relief is 7.8% against 16.8% at banks.
+- No narrative theme passed validation (5 or 6 of 10), so the narratives cannot name a root cause.
+- Action: a root-cause review of missing direct deposits and payment postings using the company's own logs before building a fix. Complaint data only sizes the problem.
+- Measure: failed or reversed payment rate and direct deposit posting delay.
+
+**Watch list.** Fraud and scams has the worst outcomes at scale (10.3% relief) but grows no faster than overall volume without Block and Zelle (+67%), and its fake-check theme failed validation. Unclassified transaction problems contain a validated wire transfer theme (17.7% of the mode, 9 of 10) and about 10% template-style text.
+
+## Key findings from the structured data
+
+Growth compares Sep 2025 to Jul 2026 with Sep 2023 to Jul 2024, two years apart, so the Jan 2025 anomalies sit in neither window.
 
 | Failure mode | Complaints | Share | Growth | Growth without Block and Zelle | Relief rate |
 | --- | --- | --- | --- | --- | --- |
@@ -15,7 +44,7 @@ Growth compares Sep 2025 to Jul 2026 with Sep 2023 to Jul 2024, two years apart,
 | Unclassified transaction problems | 6,798 | 3.6% | +175% | +107% | 10.3% |
 | All other issues | 78,751 | 41.4% | +48% | +44% | 22.4% |
 
-1. **One failure, four product labels.** Disputes and unauthorized transactions appear under credit card (26,721), checking (21,496), money transfer (5,938) and prepaid (2,020). Outside credit cards the mode has 29,454 complaints, up 122%. Grouping by failure mode shows a problem that product-level rankings split into pieces.
+1. **One failure, four product labels.** Disputes and unauthorized transactions appear under credit card (26,721 complaints), checking (21,496), money transfer (5,938) and prepaid (2,020). Checking alone grew 108%, and the mode without credit cards has 29,454 complaints, up 122%.
 2. **Chime resolves far fewer complaints than banks, and mix explains about a quarter of the gap.** Relief rate, Sep 2025 to Jul 2026: Chime 7.6% (10,524 complaints), banks 25.7%. Re-weighting banks to Chime's product and failure-mode mix gives 20.7%, so mix explains about 5 of the 18 points and a 13-point gap remains.
 3. **Chime's complaints concentrate in disputes.** Within checking, disputes and unauthorized transactions are 45.2% of Chime's complaints and 27.0% of banks'. Debits and payments gone wrong are 15.3% vs 13.4%, and access to funds is 14.8% vs 24.4%.
 4. **The gap holds inside the same product and failure mode.**
@@ -35,20 +64,45 @@ Prepaid disputes (108 Chime complaints, 10.2% vs 9.4%) show no gap, and the samp
 
 5. **Block and Zelle show near-zero relief both before and after the 2025 complaint campaign.** Block's relief rate was 0.6% before the campaign, 0.0% during it and 0.1% after, and Early Warning Services (Zelle) was 0.0% in all three periods. This is a standing pattern in how those companies' responses are recorded, not a campaign effect, so Block is shown separately in the benchmark and left out of conclusions about peer performance.
 
-**Provisional priorities (root causes come from complaint narratives in Phase 3):**
+## What the narratives show
 
-1. Disputes and unauthorized transactions
-2. Access to funds and holds
-3. Debits and payments gone wrong
+**The complaint campaign is visible in the text.** The test samples 3,000 narratives per group, measures near-duplicates (cosine similarity of 0.8 or higher within the group), shared 10-word openings and exact duplicates.
 
-**Watch list:** Fraud and scams has the worst outcomes at scale, but without Block and Zelle it grows no faster than overall volume. Unclassified transaction problems grow fast, but the CFPB issue label has no sub-issues, so it cannot be acted on until the narratives show what it contains.
+| Group | Near-duplicate | Same opening | Exact duplicate |
+| --- | --- | --- | --- |
+| Block and Zelle, Sep 2023 to Dec 2024 | 3.0% | 2.8% | 0.5% |
+| Block and Zelle, Jan 13 to Feb 28, 2025 | 78.0% | 84.5% | 55.5% |
+| Block and Zelle, Mar to Aug 2025 | 26.3% | 27.1% | 15.7% |
+| Block and Zelle, Sep 2025 to Jul 2026 | 9.0% | 10.7% | 4.1% |
+| Other companies, same weeks | 3.5% | 3.3% | 1.1% |
+| Other companies, Sep 2025 to Jul 2026 | 1.0% | 2.0% | 0.1% |
+
+Two openings account for 71% of the sampled campaign-weeks narratives. After the campaign, about 91% of Block and Zelle narratives are not near-duplicates, though 7.3% still start with the two template openings. The test shows how the complaints were written, not whether each filer had a real problem.
+
+**Theme validation.** Themes come from a topic model per failure mode on complaints from Sep 2023 to Nov 2025. For 14 of 31 themes, one reader checked 10 sampled narratives each against a proposed label (140 in all). 88 fit (63%), and seven themes reached 7 of 10.
+
+| Theme | Share of mode narratives | Relief | Fit |
+| --- | --- | --- | --- |
+| Disputes: charge disputed with a company after payment | 17.7% | 35.8% | 7 of 10 |
+| Disputes: money taken from checking or ATM, no help | 16.4% | 20.7% | 7 of 10 |
+| Disputes: merchant refund or non-delivery | 11.7% | 32.7% | 8 of 10 |
+| Disputes: unauthorized debit card transactions, claim denied | 11.5% | 23.6% | 7 of 10 |
+| Access: closed account or funds hard to withdraw | 26.3% | 18.8% | 7 of 10 |
+| Access: check deposit held | 16.6% | 21.8% | 7 of 10 |
+| Unclassified: wire transfer problem | 17.7% | 14.3% | 9 of 10 |
+
+Seven themes fell below the bar: fraudulent credit card charges (6), card dispute or refund not resolved (6), sign-up bonus or direct deposit promotion (6), check deposit or cashing problem (5), fake check or job scam (5), identity theft (4) and locked out or stuck in verification (4). Their misfit narratives showed that these labels mixed several complaint types.
+
+**Not separable by this method.** Formal-letter text with no specifics ("despite", "resolution", "regarding") makes up 14.5% to 18.8% of several modes, and generic contact-failure clusters make up 9.6% to 42.6%. Their shares are reported, with no root cause claimed.
+
+**Observation, not validated at scale.** The top terms of clusters in the debits, access and unclassified modes describe card disputes, claims and unauthorized transactions, so the disputes problem is probably larger than the 29.6% the CFPB's issue labels show. The one such cluster that was checked fit 6 of 10.
 
 ## Status
 
 - [x] Phase 0: Setup
 - [x] Phase 1: Data collection and profiling
 - [x] Phase 2: SQL analysis
-- [ ] Phase 3: Python text analysis (root causes from narratives)
+- [x] Phase 3: Python text analysis
 - [ ] Phase 4: Tableau dashboard
 - [ ] Phase 5: Recommendation memo
 
@@ -63,8 +117,6 @@ You are a product analyst at a hypothetical digital bank or payments app. Leader
 **Window.** Complaints received Sept 1, 2023 to Aug 14, 2026. The window starts after the CFPB's Aug 24, 2023 complaint-form update, so one product and issue taxonomy applies throughout. Aug 14, 2026 is the date the CFPB stopped publishing narratives. August 2026 is a partial month and is left out of trend and growth analysis.
 
 **Products in scope.** Credit card; Checking or savings account; Money transfer, virtual currency, or money service; Prepaid card. Credit reporting, debt collection, mortgage, student loan, vehicle loan and payday products are excluded because they are not neobank products.
-
-**Scope summary.**
 
 | Step | Complaints |
 | --- | --- |
@@ -90,10 +142,10 @@ Varo does not appear in the data. Chime appears under two entity names, both map
 
 The scoped data has 74,547 complaints in January 2025, against 11,584 in December 2024. Block (31,221) and Early Warning Services, which operates Zelle (16,722), account for most of the increase. Before that they averaged about 250 and 30 to 110 complaints a month.
 
-- **Complaint campaign.** Consumer Reports reported that Zelle and Cash App complaints rose nearly 15-fold in early 2025 after social media influencers told followers to file complaints, with more than 61,000 filed in the first eight months of the year. The companies told Consumer Reports that most came from the influencers' content. The CFPB ordered Block to pay $175 million on Jan 16, 2025.
+- **Complaint campaign.** Consumer Reports reported that Zelle and Cash App complaints rose nearly 15-fold in early 2025 after social media influencers told followers to file complaints, with more than 61,000 filed in the first eight months of the year. The companies told Consumer Reports that most came from the influencers' content. The narrative test above supports this. The CFPB ordered Block to pay $175 million on Jan 16, 2025.
 - **Capital One outage.** A mid-January 2025 outage at Capital One, caused by its vendor FIS Global, explains part of the remaining excess. The cause of the Navy Federal spike was not found.
 - **Handling.** Block and Zelle complaints from Jan 13 to Aug 31, 2025, and the Jan 13 to 31 complaints of any other company whose volume more than tripled (Capital One and Navy Federal), are flagged and left out of growth and rankings.
-- **Block after the campaign.** Block stayed at about 1,200 to 1,500 complaints a month, roughly 5x its old level. The structured data cannot say whether that is lingering campaign filing or real growth, so every ranking is also run without Block and Zelle.
+- **Block after the campaign.** Block stayed at about 1,200 to 1,500 complaints a month, roughly 5 times its old level. Its narratives after August 2025 are mostly not templated (91%), but every ranking is also run without Block and Zelle.
 
 Sources: [Consumer Reports](https://www.consumerreports.org/money/scams-fraud/cfpb-not-giving-money-to-people-scammed-on-zelle-cash-app-a9372236265/), [CFPB order against Block](https://www.consumerfinance.gov/enforcement/actions/block-inc/), [Fortune on the Capital One outage](https://fortune.com/article/capital-one-service-outage-january-2025-update).
 
@@ -104,10 +156,13 @@ Sources: [Consumer Reports](https://www.consumerreports.org/money/scams-fraud/cf
 - **Fixability ratings** (10_fixability.sql) are analyst judgment, not data.
 - **Sensitivity.** Issue-level priority scores were tested across 12 scenarios (six weight sets, with and without Block and Zelle). Only three issues stayed in the top five in at least 10 of the 12, and one of them has no sub-issues to act on, so the final analysis groups by failure mode.
 - **Mix-adjusted benchmark.** Chime's relief rate is compared with the banks' rate in the same product and failure mode (14_benchmark_product.sql), then banks are re-weighted to Chime's product and mode mix. The mode-only version in 13_benchmark.sql does not adjust for product and is kept for reference.
+- **Campaign test** (campaign_test.py). Narratives are normalized, then near-duplicates are measured within each group in equal-size random samples.
+- **Themes** (themes.py). TF-IDF and NMF per failure mode, with company names and common narrative verbs removed. Narratives under 30 words, template openings from Block and Zelle, and exact duplicates are dropped first. Each mode is capped at 20,000 sampled narratives, with a fixed random seed.
+- **Validation** (validate.py). One reader judged whether the main complaint in each sampled narrative matched the theme's proposed label. A theme passes at 7 of 10.
 
 ## Narratives
 
-The bulk file has no narrative column, so narratives come from the Narratives Archive. Coverage varies: about 56 to 61% of in-scope complaints in Sept 2023 to Mar 2024, 23.5% in July 2026 and near zero in Aug 2026. Other months are measured in Phase 3, and theme trends use each theme's share of narratives, not raw counts.
+The bulk file has no narrative column, so narratives come from the Narratives Archive. Of 318,648 narratives extracted for the four products, 297,905 match the analysis set, which is 55.9% of it. Coverage is stable at 55.5% to 62.8% of in-scope complaints from Sep 2023 to Nov 2025, except January 2025 (79.3%, the campaign month) and February 2025 (65.8%). It falls to 43.7% in December 2025, 24.0% to 49.0% from Jan to Jul 2026, and 0% in August 2026. Theme analysis uses Sep 2023 to Nov 2025 only. The cause of the drop was not investigated.
 
 ## CFPB complaint-form changes
 
@@ -127,10 +182,12 @@ The CFPB periodically changes the products and issues on its complaint form, and
     cfpb-complaints-intelligence/
     ├── data/          # raw and processed data (not committed)
     ├── docs/          # recommendation memo and documentation
-    ├── notebooks/     # 01 load and profile, 02 SQL analysis
-    ├── scripts/       # data preparation scripts
+    ├── notebooks/     # 01 load and profile, 02 SQL analysis and text analysis
+    ├── scripts/       # data preparation, campaign test, themes, validation
     ├── sql/           # analysis queries, numbered in run order
     └── tableau/       # dashboard notes and screenshots
+
+Scripts: filter_bulk.py (filters the bulk download to scope), extract_narratives.py (pulls in-scope narratives from the archive), campaign_test.py, themes.py, validate.py.
 
 SQL files, in run order:
 
@@ -146,7 +203,7 @@ SQL files, in run order:
 - **10_fixability.sql**: fixability ratings (analyst judgment)
 - **11_sensitivity.sql**: ranking stability across 12 scenarios
 - **12_failure_modes.sql**: issues regrouped by failure mode
-- **13_benchmark.sql**: mix-adjusted company comparison
+- **13_benchmark.sql**: mode-level company comparison
 - **14_benchmark_product.sql**: Chime vs banks within the same product and failure mode
 
 ## Tools
@@ -169,14 +226,17 @@ SQL (DuckDB), Python (pandas, scikit-learn, matplotlib, Jupyter), Tableau Public
 
 4. Run notebooks/01_load_and_profile.ipynb to load the data into DuckDB and build the complaints and company_groups tables.
 
-5. Run notebooks/02_sql_analysis.ipynb to build the scoped tables, run the analysis and export the aggregated CSVs for Tableau to data/processed/.
+5. Download the [CFPB Narratives Archive](https://www.consumerfinance.gov/foia-requests/foia-electronic-reading-room/cfpb-consumer-complaint-database-narratives-archive/) exports from Sept 2023 onward into data/raw/archive/, unzip them, and run:
 
-6. For Phase 3, download the [CFPB Narratives Archive](https://www.consumerfinance.gov/foia-requests/foia-electronic-reading-room/cfpb-consumer-complaint-database-narratives-archive/) exports into data/raw/archive/.
+        python scripts/extract_narratives.py
+
+6. Run notebooks/02_sql_analysis.ipynb to build the scoped tables, run the SQL files, run the campaign test and theme model, and export the aggregated CSVs for Tableau to data/processed/.
 
 ## Limitations
 
 - Complaints are not a statistical sample of consumer experience, and counts are not normalized by customer base.
 - Response labels are chosen by the companies, and "closed with explanation" does not mean a complaint was unfounded or mishandled. Relief-rate gaps are observations, not proof of worse service.
-- Narratives exist only for complaints where the consumer consented to publication, so themes describe that group. The CFPB stopped publishing narratives on Aug 14, 2026, which fixes the data cutoff.
-- The failure-mode grouping and the fixability ratings are analyst judgment.
-- Block's complaint volume after the 2025 campaign cannot be classified as genuine or campaign-driven from structured data.
+- Narratives exist only for complaints where the consumer consented to publication, so themes describe that group. The CFPB stopped publishing narratives on Aug 14, 2026, and coverage falls from December 2025.
+- Theme validation used one reader, 10 narratives per theme, and 14 of 31 themes that I chose to check. The 63% figure is not a model accuracy rate, and a theme at 6 of 10 cannot be distinguished from one at 7 of 10.
+- The failure-mode grouping and the fixability ratings are analyst judgment, and the product fixes are recommendations, not findings.
+- Block's complaint volume after the 2025 campaign cannot be fully classified as genuine or campaign-driven.
