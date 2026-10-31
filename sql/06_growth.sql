@@ -1,3 +1,6 @@
+-- NOTE: superseded. This file compares one-year windows that the Jan 2025 surge distorts.
+-- See 09_priority.sql and 12_failure_modes.sql for the two-year method used in the findings.
+
 -- 06_growth.sql
 -- Purpose: which issues are growing fastest
 -- Compares the last 12 full months (Aug 2025 to Jul 2026) with the 12 before (Aug 2024 to Jul 2025)
