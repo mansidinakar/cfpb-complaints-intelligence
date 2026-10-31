@@ -27,7 +27,7 @@ Growth compares Sep 2025 to Jul 2026 with Sep 2023 to Jul 2024, two years apart,
 | Debits and payments gone wrong | 7.8% | 16.8% | 35.0% |
 | Fraud and scams | 3.3% | 8.9% | 39.9% |
 
-5. **Block's relief rate is 0.1%**, which is consistent with the complaint campaign described below, so Block is kept out of the conclusions.
+5. **Block and Zelle show near-zero relief both before and after the 2025 complaint campaign.** Block's relief rate was 0.6% before the campaign, 0.0% during it and 0.1% after, and Early Warning Services (Zelle) was 0.0% in all three periods. This is a standing pattern in how those companies' responses are recorded, not a campaign effect, so Block is shown separately in the benchmark and left out of conclusions about peer performance.
 
 **Provisional priorities (root causes come from complaint narratives in Phase 3):**
 
