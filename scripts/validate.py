@@ -20,6 +20,10 @@ CHECK = [
     ("Debits and payments gone wrong", 3, "Sign-up bonus or direct deposit promotion not honored"),
     ("Fraud and scams", 5, "Fake check or job scam"),
     ("Unclassified transaction problems", 3, "Wire transfer problem, recall requested"),
+    ("Disputes and unauthorized transactions", 2, "Fraudulent credit card charges"),
+    ("Disputes and unauthorized transactions", 4, "Identity theft, police report filed"),
+    ("Debits and payments gone wrong", 0, "Card transaction dispute or refund not resolved"),
+    ("Debits and payments gone wrong", 2, "Check deposit or cashing problem"),
 ]
 SAMPLES = Path("../data/processed/theme_samples.csv")
 ANSWERS = Path("../data/processed/validation_answers.csv")
