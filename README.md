@@ -8,11 +8,11 @@ The three priorities have different strengths of evidence, and the fixes are ana
 
 | Priority | Failure mode | Share of complaints | Growth without Block and Zelle | Evidence |
 | --- | --- | --- | --- | --- |
-| 1 | Disputes and unauthorized transactions | 29.6% | +106% | Strong: structured data and four validated narrative themes |
-| 2 | Access to funds and holds | 14.4% | +73% | Moderate: structured data and two validated themes (42.9% of the mode's narratives) |
+| 1 | Disputes and unauthorized transactions | 29.8% | +106% | Strong: structured data and four validated narrative themes |
+| 2 | Access to funds and holds | 14.5% | +73% | Moderate: structured data and two validated themes (42.9% of the mode's narratives) |
 | 3 | Debits and payments gone wrong | 5.6% | +99% | Structured data only: no narrative theme passed validation |
 
-Overall complaint volume grew 68.1% over the same period without Block and Zelle (77.9% with them).
+Overall complaint volume grew 67.6% over the same period without Block and Zelle (76.5% with them).
 
 **1. Disputes and unauthorized transactions.** Chime's checking disputes close with relief 7.8% of the time against 23.5% at banks, and disputes are 45.2% of Chime's checking complaints against 27.0% at banks.
 - Validated root causes: unauthorized debit card transactions where the claim is denied (11.5% of the mode's narratives) and money taken from a checking account or ATM with no resolution (16.4%), plus merchant refund or non-delivery disputes (11.7%) and charges disputed with a company after payment (17.7%).
@@ -29,57 +29,74 @@ Overall complaint volume grew 68.1% over the same period without Block and Zelle
 - Action: a root-cause review of missing direct deposits and payment postings using the company's own logs before building a fix. Complaint data only sizes the problem.
 - Measure: failed or reversed payment rate and direct deposit posting delay.
 
-**Watch list.** Fraud and scams has the worst outcomes at scale (10.3% relief) but grows no faster than overall volume without Block and Zelle (+67%), and its fake-check theme failed validation. Unclassified transaction problems contain a validated wire transfer theme (17.7% of the mode, 9 of 10) and about 10% template-style text.
+**Watch list.** Fraud and scams has the worst outcomes at scale (10.3% relief) but grows no faster than overall volume without Block and Zelle (+67%), and its fake-check theme failed validation. Unclassified transaction problems (2.8% of complaints, +82% without Block and Zelle, after an October 2025 template wave was flagged) contain a validated wire-transfer theme (17.7% of the mode's narratives in the pre-flag model, 9 of 10).
 
 ## Key findings from the structured data
 
-Growth compares Sep 2025 to Jul 2026 with Sep 2023 to Jul 2024, two years apart, so the Jan 2025 anomalies sit in neither window.
+Growth compares Sep 2025 to Jul 2026 with Sep 2023 to Jul 2024, two years apart, so the Jan 2025 anomalies sit in neither window. Flagged complaints (see the surge section) are left out.
 
 | Failure mode | Complaints | Share | Growth | Growth without Block and Zelle | Relief rate |
 | --- | --- | --- | --- | --- | --- |
-| Disputes and unauthorized transactions | 56,175 | 29.6% | +115% | +106% | 23.3% |
-| Access to funds and holds | 27,430 | 14.4% | +86% | +73% | 17.3% |
+| Disputes and unauthorized transactions | 56,175 | 29.8% | +115% | +106% | 23.3% |
+| Access to funds and holds | 27,430 | 14.5% | +86% | +73% | 17.3% |
 | Debits and payments gone wrong | 10,586 | 5.6% | +105% | +99% | 14.5% |
-| Fraud and scams | 10,320 | 5.4% | +98% | +67% | 10.3% |
-| Unclassified transaction problems | 6,798 | 3.6% | +175% | +107% | 10.3% |
-| All other issues | 78,751 | 41.4% | +48% | +44% | 22.4% |
+| Fraud and scams | 10,320 | 5.5% | +98% | +67% | 10.3% |
+| Unclassified transaction problems | 5,287 | 2.8% | +114% | +82% | 13.1% |
+| All other issues | 78,751 | 41.8% | +48% | +44% | 22.4% |
 
 1. **One failure, four product labels.** Disputes and unauthorized transactions appear under credit card (26,721 complaints), checking (21,496), money transfer (5,938) and prepaid (2,020). Checking alone grew 108%, and the mode without credit cards has 29,454 complaints, up 122%.
-2. **Chime resolves far fewer complaints than banks, and mix explains about a quarter of the gap.** Relief rate, Sep 2025 to Jul 2026: Chime 7.6% (10,524 complaints), banks 25.7%. Re-weighting banks to Chime's product and failure-mode mix gives 20.7%, so mix explains about 5 of the 18 points and a 13-point gap remains.
+2. **Chime resolves far fewer complaints than banks, and mix explains about a quarter of the gap.** Relief rate, Sep 2025 to Jul 2026: Chime 8.0% (9,969 complaints), banks 25.7%. Re-weighting banks to Chime's product and failure-mode mix gives 21.2%, so mix explains about 4.5 of the 17.7 points and a 13.2-point gap remains.
 3. **Chime's complaints concentrate in disputes.** Within checking, disputes and unauthorized transactions are 45.2% of Chime's complaints and 27.0% of banks'. Debits and payments gone wrong are 15.3% vs 13.4%, and access to funds is 14.8% vs 24.4%.
-4. **The gap holds inside the same product and failure mode.**
+4. **The gap holds inside the same product and failure mode.** Chime is below banks in 11 of 12 cells with 100 or more Chime complaints.
 
 | Relief rate, same product and mode | Chime complaints | Chime | Banks |
 | --- | --- | --- | --- |
 | Checking: disputes and unauthorized transactions | 3,298 | 7.8% | 23.5% |
-| Checking: access to funds and holds | 1,078 | 9.1% | 21.2% |
-| Checking: debits and payments gone wrong | 1,119 | 7.8% | 16.8% |
 | Checking: all other issues | 1,795 | 10.7% | 24.3% |
-| Credit card: disputes and unauthorized transactions | 581 | 9.5% | 34.5% |
+| Checking: debits and payments gone wrong | 1,119 | 7.8% | 16.8% |
+| Checking: access to funds and holds | 1,078 | 9.1% | 21.2% |
 | Money transfer: fraud and scams | 800 | 3.3% | 8.9% |
-| Money transfer: unclassified | 690 | 1.4% | 13.0% |
+| Credit card: disputes and unauthorized transactions | 581 | 9.5% | 34.5% |
 | Money transfer: disputes and unauthorized transactions | 419 | 4.8% | 12.6% |
+| Credit card: all other issues | 287 | 7.0% | 29.4% |
+| Money transfer: all other issues | 136 | 6.6% | 12.1% |
+| Money transfer: unclassified | 135 | 5.2% | 13.0% |
+| Money transfer: access to funds and holds | 129 | 10.9% | 15.3% |
+| Prepaid card: disputes and unauthorized transactions | 108 | 10.2% | 9.4% |
 
-Prepaid disputes (108 Chime complaints, 10.2% vs 9.4%) show no gap, and the sample is too small to read. PayPal's relief rate (38.5%) is at failure-mode level and is not adjusted for product.
+Prepaid disputes are the only cell without a gap, and the sample is small. PayPal's relief rate (38.5%) is at failure-mode level and is not adjusted for product.
 
 5. **Block and Zelle show near-zero relief both before and after the 2025 complaint campaign.** Block's relief rate was 0.6% before the campaign, 0.0% during it and 0.1% after, and Early Warning Services (Zelle) was 0.0% in all three periods. This is a standing pattern in how those companies' responses are recorded, not a campaign effect, so Block is shown separately in the benchmark and left out of conclusions about peer performance.
+6. **Chime's complaint volume roughly doubled and the rise is treated as real.** Kept complaints went from about 550 a month in Jun 2025 to about 1,000 a month in Jun and Jul 2026, and monthly disputes rose from 225 in Sep 2025 to 363 in Oct 2025 and stayed between 326 and 456. Template letters explain 21 of 5,423 Chime complaints from Oct 2025 to Mar 2026 (under 0.5%). The cause of the increase was not investigated.
 
 ## What the narratives show
 
-**The complaint campaign is visible in the text.** The test samples 3,000 narratives per group, measures near-duplicates (cosine similarity of 0.8 or higher within the group), shared 10-word openings and exact duplicates.
+**The complaint campaigns are visible in the text.** The test samples 3,000 narratives per group, measures near-duplicates (cosine similarity of 0.8 or higher within the group), shared 10-word openings and exact duplicates. Flagged complaints are left out of the two groups from Sep 2025.
 
 | Group | Near-duplicate | Same opening | Exact duplicate |
 | --- | --- | --- | --- |
-| Block and Zelle, Sep 2023 to Dec 2024 | 3.0% | 2.8% | 0.5% |
-| Block and Zelle, Jan 13 to Feb 28, 2025 | 78.0% | 84.5% | 55.5% |
-| Block and Zelle, Mar to Aug 2025 | 26.3% | 27.1% | 15.7% |
-| Block and Zelle, Sep 2025 to Jul 2026 | 9.0% | 10.7% | 4.1% |
-| Other companies, same weeks | 3.5% | 3.3% | 1.1% |
-| Other companies, Sep 2025 to Jul 2026 | 1.0% | 2.0% | 0.1% |
+| Block and Zelle, Sep 2023 to Dec 2024 | 3.0% | 2.5% | 0.4% |
+| Block and Zelle, Jan 13 to Feb 28, 2025 | 77.6% | 83.1% | 56.1% |
+| Block and Zelle, Mar to Aug 2025 | 26.0% | 27.2% | 16.1% |
+| Block and Zelle, Sep 2025 to Jul 2026 | 3.1% | 5.5% | 1.2% |
+| Other companies, same weeks as the campaign | 3.7% | 3.7% | 0.8% |
+| Other companies, Sep 2025 to Jul 2026 | 0.5% | 1.6% | 0.0% |
 
-Two openings account for 71% of the sampled campaign-weeks narratives. After the campaign, about 91% of Block and Zelle narratives are not near-duplicates, though 7.3% still start with the two template openings. The test shows how the complaints were written, not whether each filer had a real problem.
+In the first run of the test, two openings accounted for 71% of the sampled campaign-weeks narratives. After the campaign, the three most common openings cover 67 of 3,000 sampled narratives (2.2%). The test shows how the complaints were written, not whether each filer had a real problem.
 
-**Theme validation.** Themes come from a topic model per failure mode on complaints from Sep 2023 to Nov 2025. For 14 of 31 themes, one reader checked 10 sampled narratives each against a proposed label (140 in all). 88 fit (63%), and seven themes reached 7 of 10.
+**A second templated wave in October 2025.** Money transfer complaints filed as "Other transaction problem" jumped to 1,890 in October 2025 against about 270 to 520 in neighboring months, and Chime (555), Zelle (808) and Block (148) accounted for 80% of them. The narrative test, on the same issue in the same month:
+
+| Group | Narratives available | Sampled | Near-duplicate | Same opening |
+| --- | --- | --- | --- | --- |
+| Chime, Oct 2025 | 364 | 100 | 62.0% | 76.0% |
+| Zelle (Early Warning Services), Oct 2025 | 547 | 100 | 68.0% | 73.0% |
+| Block, Oct 2025 | 95 | 95 | 51.6% | 46.3% |
+| Chime, other months Jun 2025 to Jan 2026 | 67 | 67 | 11.9% | 9.0% |
+| All other companies, Oct 2025 | 218 | 100 | 3.0% | 0.0% |
+
+The same opening letter, "I am writing to formally express my concerns regarding", appears with the company name swapped in 64 of 100 sampled Chime narratives and 64 of 100 sampled Zelle narratives. Relief in the wave was 0.5% for Chime and 0.0% for Zelle and Block. The cause was not found, and no source documents this wave. These 1,511 complaints are flagged and left out of growth and rankings.
+
+**Theme validation.** Themes come from a topic model per failure mode on complaints from Sep 2023 to Nov 2025, run before the October 2025 wave was flagged. For 14 of 31 themes, one reader checked 10 sampled narratives each against a proposed label (140 in all). 88 fit (63%), and seven themes reached 7 of 10.
 
 | Theme | Share of mode narratives | Relief | Fit |
 | --- | --- | --- | --- |
@@ -95,7 +112,7 @@ Seven themes fell below the bar: fraudulent credit card charges (6), card disput
 
 **Not separable by this method.** Formal-letter text with no specifics ("despite", "resolution", "regarding") makes up 14.5% to 18.8% of several modes, and generic contact-failure clusters make up 9.6% to 42.6%. Their shares are reported, with no root cause claimed.
 
-**Observation, not validated at scale.** The top terms of clusters in the debits, access and unclassified modes describe card disputes, claims and unauthorized transactions, so the disputes problem is probably larger than the 29.6% the CFPB's issue labels show. The one such cluster that was checked fit 6 of 10.
+**Observation, not validated at scale.** The top terms of clusters in the debits, access and unclassified modes describe card disputes, claims and unauthorized transactions, so the disputes problem is probably larger than the 29.8% the CFPB's issue labels show. The one such cluster that was checked fit 6 of 10.
 
 ## Status
 
@@ -125,7 +142,7 @@ You are a product analyst at a hypothetical digital bank or payments app. Leader
 | Credit-report issues under in-scope products | 62,834 |
 | Excluded in total (the two overlap) | 72,210 |
 | **Analysis set** | **533,015** |
-| Of which flagged as surge (see below) | 74,909 |
+| Of which flagged as surge (see below) | 76,420 |
 
 Excluded and surge rows are flagged in the data, not deleted.
 
@@ -138,14 +155,15 @@ Excluded and surge rows are flagged in the data, not deleted.
 
 Varo does not appear in the data. Chime appears under two entity names, both mapped to Fintech. Block accounts for 61,656 complaints, 52.6% of the fintech group.
 
-## The January 2025 surge
+## Surge flags
 
 The scoped data has 74,547 complaints in January 2025, against 11,584 in December 2024. Block (31,221) and Early Warning Services, which operates Zelle (16,722), account for most of the increase. Before that they averaged about 250 and 30 to 110 complaints a month.
 
-- **Complaint campaign.** Consumer Reports reported that Zelle and Cash App complaints rose nearly 15-fold in early 2025 after social media influencers told followers to file complaints, with more than 61,000 filed in the first eight months of the year. The companies told Consumer Reports that most came from the influencers' content. The narrative test above supports this. The CFPB ordered Block to pay $175 million on Jan 16, 2025.
+- **Complaint campaign, early 2025.** Consumer Reports reported that Zelle and Cash App complaints rose nearly 15-fold in early 2025 after social media influencers told followers to file complaints, with more than 61,000 filed in the first eight months of the year. The companies told Consumer Reports that most came from the influencers' content. The narrative test above supports this. The CFPB ordered Block to pay $175 million on Jan 16, 2025.
 - **Capital One outage.** A mid-January 2025 outage at Capital One, caused by its vendor FIS Global, explains part of the remaining excess. The cause of the Navy Federal spike was not found.
-- **Handling.** Block and Zelle complaints from Jan 13 to Aug 31, 2025, and the Jan 13 to 31 complaints of any other company whose volume more than tripled (Capital One and Navy Federal), are flagged and left out of growth and rankings.
-- **Block after the campaign.** Block stayed at about 1,200 to 1,500 complaints a month, roughly 5 times its old level. Its narratives after August 2025 are mostly not templated (91%), but every ranking is also run without Block and Zelle.
+- **October 2025 template wave.** Described in the narratives section. No source documents it.
+- **Handling.** Three groups of complaints are flagged and left out of growth and rankings: Block and Zelle complaints from Jan 13 to Aug 31, 2025; the Jan 13 to 31 complaints of any other company whose volume more than tripled (Capital One and Navy Federal); and Chime, Block and Zelle complaints filed as money transfer, other transaction problem in October 2025.
+- **Block after the campaign.** Kept Block complaints ran at about 1,000 to 1,400 a month from Sep to Dec 2025, roughly 4 to 5 times its old level. Its narratives from Sep 2025 are mostly not templated (3.1% near-duplicates against 0.5% for other companies), but every ranking is also run without Block and Zelle.
 
 Sources: [Consumer Reports](https://www.consumerreports.org/money/scams-fraud/cfpb-not-giving-money-to-people-scammed-on-zelle-cash-app-a9372236265/), [CFPB order against Block](https://www.consumerfinance.gov/enforcement/actions/block-inc/), [Fortune on the Capital One outage](https://fortune.com/article/capital-one-service-outage-january-2025-update).
 
@@ -154,7 +172,7 @@ Sources: [Consumer Reports](https://www.consumerreports.org/money/scams-fraud/cf
 - **Relief** means closed with monetary or non-monetary relief. **Poor outcome** means no relief or an untimely response. Complaints still in progress are excluded from outcome rates.
 - **Failure modes** group CFPB issue and sub-issue labels by what went wrong. The grouping is analyst judgment, and the full definition is the CASE statement in 12_failure_modes.sql.
 - **Fixability ratings** (10_fixability.sql) are analyst judgment, not data.
-- **Sensitivity.** Issue-level priority scores were tested across 12 scenarios (six weight sets, with and without Block and Zelle). Only three issues stayed in the top five in at least 10 of the 12, and one of them has no sub-issues to act on, so the final analysis groups by failure mode.
+- **Sensitivity.** Issue-level priority scores were tested across 12 scenarios (six weight sets, with and without Block and Zelle). Only two issues stayed in the top five in at least 10 of the 12 (money transfer fraud or scam, and checking charged by a lender or other company), so the final analysis groups by failure mode instead of ranking issue labels.
 - **Mix-adjusted benchmark.** Chime's relief rate is compared with the banks' rate in the same product and failure mode (14_benchmark_product.sql), then banks are re-weighted to Chime's product and mode mix. The mode-only version in 13_benchmark.sql does not adjust for product and is kept for reference.
 - **Campaign test** (campaign_test.py). Narratives are normalized, then near-duplicates are measured within each group in equal-size random samples.
 - **Themes** (themes.py). TF-IDF and NMF per failure mode, with company names and common narrative verbs removed. Narratives under 30 words, template openings from Block and Zelle, and exact duplicates are dropped first. Each mode is capped at 20,000 sampled narratives, with a fixed random seed.
@@ -237,6 +255,7 @@ SQL (DuckDB), Python (pandas, scikit-learn, matplotlib, Jupyter), Tableau Public
 - Complaints are not a statistical sample of consumer experience, and counts are not normalized by customer base.
 - Response labels are chosen by the companies, and "closed with explanation" does not mean a complaint was unfounded or mishandled. Relief-rate gaps are observations, not proof of worse service.
 - Narratives exist only for complaints where the consumer consented to publication, so themes describe that group. The CFPB stopped publishing narratives on Aug 14, 2026, and coverage falls from December 2025.
-- Theme validation used one reader, 10 narratives per theme, and 14 of 31 themes that I chose to check. The 63% figure is not a model accuracy rate, and a theme at 6 of 10 cannot be distinguished from one at 7 of 10.
+- Theme validation used one reader, 10 narratives per theme, and 14 of 31 themes that I chose to check. The 63% figure is not a model accuracy rate, and a theme at 6 of 10 cannot be distinguished from one at 7 of 10. Themes were modeled before the October 2025 wave was flagged, so the unclassified mode's theme shares include it.
+- Template detection looks for shared openings and near-duplicate text among complaints that have narratives (about 60%). Other templated filings would not be detected.
 - The failure-mode grouping and the fixability ratings are analyst judgment, and the product fixes are recommendations, not findings.
 - Block's complaint volume after the 2025 campaign cannot be fully classified as genuine or campaign-driven.

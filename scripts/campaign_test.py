@@ -30,14 +30,14 @@ def campaign_test(con, sample_size=3000, seed=1):
                AND c.date_received BETWEEN DATE '2025-03-01' AND DATE '2025-08-31'
             THEN '2 Block+Zelle Mar-Aug 2025'
           WHEN c.company IN ('Block, Inc.', 'Early Warning Services, LLC')
-               AND c.date_received >= DATE '2025-09-01'
+               AND c.date_received >= DATE '2025-09-01' AND NOT c.is_surge_event
             THEN '3 Block+Zelle after (Sep 2025-Jul 2026)'
           WHEN c.company NOT IN ('Block, Inc.', 'Early Warning Services, LLC')
                AND c.company NOT IN (SELECT company FROM spike_companies)
                AND c.date_received BETWEEN DATE '2025-01-13' AND DATE '2025-02-28'
             THEN '4 Control: all others, same weeks'
           WHEN c.company NOT IN ('Block, Inc.', 'Early Warning Services, LLC')
-               AND c.date_received >= DATE '2025-09-01'
+               AND c.date_received >= DATE '2025-09-01' AND NOT c.is_surge_event
             THEN '5 Control: all others, Sep 2025-Jul 2026'
         END AS grp
       FROM narratives n JOIN complaints_scoped c USING (complaint_id)
