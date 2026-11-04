@@ -69,6 +69,16 @@ Prepaid disputes are the only cell without a gap, and the sample is small. PayPa
 5. **Block and Zelle show near-zero relief both before and after the 2025 complaint campaign.** Block's relief rate was 0.6% before the campaign, 0.0% during it and 0.1% after, and Early Warning Services (Zelle) was 0.0% in all three periods. This is a standing pattern in how those companies' responses are recorded, not a campaign effect, so Block is shown separately in the benchmark and left out of conclusions about peer performance.
 6. **Chime's complaint volume roughly doubled and the rise is treated as real.** Kept complaints went from about 550 a month in Jun 2025 to about 1,000 a month in Jun and Jul 2026, and monthly disputes rose from 225 in Sep 2025 to 363 in Oct 2025 and stayed between 326 and 456. Template letters explain 21 of 5,423 Chime complaints from Oct 2025 to Mar 2026 (under 0.5%). The cause of the increase was not investigated.
 
+## Interactive dashboard
+**Live dashboard:** [View on Tableau Public](https://public.tableau.com/views/CFPBComplaintsIntelligence/Theproblem)
+
+Built from five aggregated CSVs (no raw complaint rows).
+
+![The problem](tableau/dashboard_1_problem.png)
+![Chime vs banks](tableau/dashboard_2_chime_vs_banks.png)
+![Why it happens](tableau/dashboard_3_why_it_happens.png)
+![Recommendations](tableau/dashboard_4_recommendations.png)
+
 ## What the narratives show
 
 **The complaint campaigns are visible in the text.** The test samples 3,000 narratives per group, measures near-duplicates (cosine similarity of 0.8 or higher within the group), shared 10-word openings and exact duplicates. Flagged complaints are left out of the two groups from Sep 2025.
@@ -120,7 +130,7 @@ Seven themes fell below the bar: fraudulent credit card charges (6), card disput
 - [x] Phase 1: Data collection and profiling
 - [x] Phase 2: SQL analysis
 - [x] Phase 3: Python text analysis
-- [ ] Phase 4: Tableau dashboard
+- [x] Phase 4: Tableau dashboard
 - [ ] Phase 5: Recommendation memo
 
 ## The scenario
