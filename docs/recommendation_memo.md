@@ -1,11 +1,10 @@
 # Which complaint failures should a neobank fix first?
 
-**To:** Head of Product, Customer Operations (consumer fintech / neobank)
-**From:** Mansi Dinakar
-**Date:** November 2026
-**Data:** CFPB Consumer Complaint Database, Sep 1 2023 to Aug 14 2026. Live dashboards: https://public.tableau.com/views/CFPBComplaintsIntelligence/Theproblem
-
-## Recommendation
+- **To:** Head of Product, Customer Operations (consumer fintech / neobank)
+- **From:** Mansi Dinakar
+- **Date:** November 2026
+- **Data:** CFPB Consumer Complaint Database, Sep 1 2023 to Aug 14 2026
+- **Live dashboards:** [Tableau Public](https://public.tableau.com/views/CFPBComplaintsIntelligence/Theproblem)
 
 Fix three failure modes, in this order. The evidence is strongest for the first and weakest for the third.
 
