@@ -18,9 +18,9 @@ Fix three failure modes, in this order. The evidence is strongest for the first 
 
 ## Why this matters
 
-I analyzed 533,015 complaints about credit cards, checking, money transfer and prepaid products. Disputes and unauthorized transactions are the largest named failure mode and one of the fastest growing. Complaints are growing, and the complaints that grow fastest are the ones where the consumer has lost money and is asking for it back.
+I analyzed 533,015 complaints about credit cards, checking, money transfer and prepaid products. Disputes and unauthorized transactions are the largest named failure mode (29.8% of complaints) and the fastest growing, up 106% over two years against 68% for overall volume.
 
-Relief is the outcome that matters most. A consumer who gets monetary or non-monetary relief has had the problem fixed. Across the same product and failure mode, Chime closes 8.0% of complaints with relief. The five largest banks close 25.7%, or 21.2% once I re-weight the banks to Chime's product and failure-mode mix. Mix explains about 4.5 of the 17.7-point gap. A 13.2-point gap remains. Chime is below the banks in 11 of 12 segments I could compare.
+Relief is the best outcome signal in the data. It means the complaint closed with monetary or non-monetary relief. Chime closes 8.0% of complaints with relief. The five largest banks close 25.7%, or 21.2% once I re-weight the banks to Chime's product and failure-mode mix. Mix explains about 4.5 of the 17.7-point gap, and a 13.2-point gap remains. Within the same product and failure mode, Chime is below the banks in 11 of 12 segments I could compare.
 
 ## What the complaints say
 
@@ -45,7 +45,7 @@ No debits theme passed, so I do not claim to know why debits fail. That is why P
 - **Two complaint surges removed.** A Block and Zelle campaign (Jan 13 to Aug 31 2025) and an October 2025 template wave inflated counts. In the campaign weeks, 77.6% of Block and Zelle narratives were near-duplicates, against 3.0% before and 3.7% for other companies. I flagged 76,420 complaints as surge and left them out of growth and relief figures.
 - **Growth measured over two years,** not one, so the surge does not distort the trend.
 - **Benchmark adjusted for mix.** Chime is compared with banks in the same product and failure mode, then banks are re-weighted to Chime's mix.
-- **Sensitivity checked** across 12 scenarios.
+- **Rankings stress-tested.** Issue-level rankings were unstable across 12 weighting scenarios, so I ranked failure modes instead.
 
 ## Limits
 
@@ -54,6 +54,6 @@ No debits theme passed, so I do not claim to know why debits fail. That is why P
 - Narratives exist only where the consumer consented to publication, so themes describe that group. The CFPB stopped publishing narratives on Aug 14 2026.
 - Themes were modeled before the October 2025 wave was flagged, so the unclassified theme shares include some of it.
 
-Full method, SQL, Python and numbers: https://public.tableau.com/views/CFPBComplaintsIntelligence/Theproblem `cfpb-complaints-intelligence`.
+Full method, SQL, Python and numbers: [github.com/mansidinakar/cfpb-complaints-intelligence](https://github.com/mansidinakar/cfpb-complaints-intelligence)
 
 *Prepared with AI assistance (Claude) for drafting and code debugging. Analysis choices and validation are my own. See the README for details.*
