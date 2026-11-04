@@ -269,3 +269,9 @@ SQL (DuckDB), Python (pandas, scikit-learn, matplotlib, Jupyter), Tableau Public
 - Template detection looks for shared openings and near-duplicate text among complaints that have narratives (about 60%). Other templated filings would not be detected.
 - The failure-mode grouping and the fixability ratings are analyst judgment, and the product fixes are recommendations, not findings.
 - Block's complaint volume after the 2025 campaign cannot be fully classified as genuine or campaign-driven.
+
+## AI use disclosure
+
+I used Claude (Anthropic) as a coaching and drafting assistant. It helped me plan the project phases, debug SQL and Python, and draft the README and recommendation memo wording.
+
+I made the analytical decisions and checked the results: scoping the question, choosing the analysis window, grouping CFPB issues into failure modes, flagging the surge complaints, hand-reading the narrative samples to validate themes, and ranking the priorities. I ran all queries and scripts myself and verified the numbers against the data.

@@ -55,3 +55,5 @@ No debits theme passed, so I do not claim to know why debits fail. That is why P
 - Themes were modeled before the October 2025 wave was flagged, so the unclassified theme shares include some of it.
 
 Full method, SQL, Python and numbers: https://public.tableau.com/views/CFPBComplaintsIntelligence/Theproblem `cfpb-complaints-intelligence`.
+
+*Prepared with AI assistance (Claude) for drafting and code debugging. Analysis choices and validation are my own. See the README for details.*
